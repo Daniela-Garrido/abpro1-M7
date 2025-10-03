@@ -40,10 +40,11 @@ const seleccionar = () => {
             <p class="card-text fw-bold mt-auto mb-2">Precio: ${{ producto.precio.toLocaleString('es-CL') }}</p>
             <p class="card-text">
                 <span v-if="producto.stock > 0" class="badge bg-success">Stock: {{ producto.stock }}</span>
-                <span v-else class="badge bg-danger">Agotado</span>
+                <span v-else class="badge bg-secondary">Stock: {{ producto.stock }}</span>
             </p>
             <button class="btn btn-primary btn-sm" :disabled="producto.stock === 0">Agregar</button>
         </div>
+        <slot name="ribbon"></slot>
     </div>
     
 </template>

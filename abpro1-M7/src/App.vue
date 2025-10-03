@@ -10,14 +10,14 @@ const productos = ref([
     precio: 25000,
     imagen: '/img/mouse.png',
     stock: 50,
-    descripcion: 'Mouse gamer con alta precision'
+    descripcion: 'Mouse gamer con alta precision',
   },
   {
     id:2,
     name: 'Teclado Gamer',
     precio: 150000,
     imagen: '/img/teclado.png',
-    stock: 20,
+    stock: 0,
     descripcion: 'Teclado gamer con alta precision'
   },
   {
