@@ -1,5 +1,6 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
+
 const props = defineProps({
     producto: {
         type: Object,
@@ -7,64 +8,42 @@ const props = defineProps({
     }
 });
 
-const emit = defineEmits({
-    'ver-detalle': (detalle) => {
-        const ok = typeof detalle === 'object' && detalle !== null && 'id' in detalle && 'name' in detalle
-        if (!ok) {
-            console.warn('El evento ver-detalle requiere un objeto con id y name');
-        }
-        return ok
-    }
-})
+//Definir los eventos que puede emitir el componente
+const emit = defineEmits(['seleccionar-producto']);
 
-function emitirEvento() {
-    emit('ver-detalle', { id: props.producto.id, name: props.producto.name });
-}
+//Función para emitir el evento al hacer clic
+const seleccionar = () => {
+    emit('seleccionar-producto', props.producto);
+};
 
 </script>
-<template>
-    <div class="tarjeta-producto" :class="{'producto-agotado': producto.stock === 0}" style="width: 18rem;">
-        <img :src="producto.imagen" class="card-img-top" :alt="producto.name" />
-        <div class="card-body">
-            <h5 class="card-title">{{ producto.name }}</h5>
-            <p class="card-text">{{ producto.descripcion }}</p>
-            <p :class="{'text-success': producto.stock > 0, 'text-danger': producto.stock === 0}">
-                <span v-if="producto.stock > 0">En stock: {{ producto.stock }}</span>
-                <span v-else class="agotado">Agotado</span>
+
+<!-- <template> 
+    <div class="tarjeta-producto">
+        <img :src="producto.imagen" :alt="producto.name" />
+        <h2>{{ producto.name }}</h2>
+        <p>{{ producto.descripcion }}</p>
+        <p>Precio: ${{ producto.precio }}</p>
+        <p v-if="producto.stock > 0">En stock: {{ producto.stock }}</p>
+        <p v-else class="agotado">Agotado</p>
+        <button :disabled="producto.stock === 0">Agregar al carrito</button>
+    </div>
+    
+</template> -->
+
+<template> 
+    <div class="card h-100 shadow-sm" @click="seleccionar" style="cursor: pointer;">
+        <img :src="producto.imagen" class="card-img-top p-3" :alt="producto.name" style="height: 150px; object-fit: contain;" />
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-truncate">{{ producto.name }}</h5>
+            <p class="card-text text-muted small mb-1">{{ producto.descripcion.substring(0, 40) }}...</p>
+            <p class="card-text fw-bold mt-auto mb-2">Precio: ${{ producto.precio.toLocaleString('es-CL') }}</p>
+            <p class="card-text">
+                <span v-if="producto.stock > 0" class="badge bg-success">Stock: {{ producto.stock }}</span>
+                <span v-else class="badge bg-danger">Agotado</span>
             </p>
-            <button 
-                @click="emitirEvento" 
-                :disabled="producto.stock === 0"
-                :class="{'btn-primary': producto.stock > 0, 'btn-secondary': producto.stock === 0}">
-                Agregar al carrito
-            </button>
+            <button class="btn btn-primary btn-sm" :disabled="producto.stock === 0">Agregar</button>
         </div>
-    </div>    
+    </div>
+    
 </template>
-
-<style scoped>
-.tarjeta-producto {
-    border: 1px solid #dee2e6;
-    border-radius: 0.375rem;
-    transition: all 0.3s ease;
-}
-
-.tarjeta-producto:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.producto-agotado {
-    opacity: 0.7;
-    background-color: #f8f9fa;
-    border-color: #ff949f;
-}
-
-.agotado {
-    font-weight: bold;
-}
-
-/* Estilos para el botón deshabilitado */
-button:disabled {
-    cursor: not-allowed;
-}
-</style>
