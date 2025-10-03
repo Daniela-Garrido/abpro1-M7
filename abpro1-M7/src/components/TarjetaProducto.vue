@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, onBeforeMount, onMounted, onBeforeUnmount } from 'vue';
 
 const props = defineProps({
     producto: {
@@ -15,6 +15,24 @@ const emit = defineEmits(['seleccionar-producto']);
 const seleccionar = () => {
     emit('seleccionar-producto', props.producto);
 };
+
+// Hook "created" simulado: se ejecuta al iniciar el script setup
+console.log(`TarjetaProducto "${props.producto.name} (id:${props.producto.id})" creada`);
+
+// Hook "beforeMount"
+onBeforeMount(() => {
+    console.log(`TarjetaProducto "${props.producto.name} (id:${props.producto.id})" antes de montarse`);
+});
+
+// Hook "mounted": cuando el componente está en el DOM
+onMounted(() => {
+    console.log(`TarjetaProducto "${props.producto.name} (id:${props.producto.id})" montada`);
+});
+
+// Hook "beforeUnmount": antes de que se destruya el componente
+onBeforeUnmount(() => {
+    console.log(`TarjetaProducto "${props.producto.name} (id:${props.producto.id})" destruida`);
+});
 
 </script>
 
