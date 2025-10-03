@@ -1,6 +1,5 @@
 <script setup>
 import { ref , onMounted } from 'vue';
-import TarjetaProducto from './components/TarjetaProducto.vue';
 import CatalogoProductos from './components/CatalogoProductos.vue';
 
 
@@ -62,5 +61,4 @@ onMounted(() => {
 
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

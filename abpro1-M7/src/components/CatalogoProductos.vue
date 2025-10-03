@@ -32,7 +32,8 @@ const cerrarDetalle = () => {
         <TarjetaProducto 
         v-for="producto in productos" 
         :key="producto.id" 
-        :producto="producto"/>
+        :producto="producto"
+        @ver-detalle="(detalle) => alert(`id: ${producto.id}, name: ${producto.name}`)"/>
     </div>
     
 </template> -->
