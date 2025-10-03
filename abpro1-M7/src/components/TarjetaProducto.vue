@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
 
 <template> 
     <div class="card h-100 shadow-sm" @click="seleccionar" style="cursor: pointer;">
-        <img :src="producto.imagen" class="card-img-top p-3" :alt="producto.name" style="height: 150px; object-fit: contain;" />
+        <img :src="producto.imagen" class="card-img-top p-3" :alt="producto.name" :style="{height: '150px', objectFit: 'contain', filter: producto.stock === 0 ? 'grayscale(100%)' : 'none', opacity: producto.stock === 0 ? 0.5 : 1 }" />
         <div class="card-body d-flex flex-column">
             <h5 class="card-title text-truncate">{{ producto.name }}</h5>
             <p class="card-text text-muted small mb-1">{{ producto.descripcion.substring(0, 40) }}...</p>
@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
                 <span v-if="producto.stock > 0" class="badge bg-success">Stock: {{ producto.stock }}</span>
                 <span v-else class="badge bg-secondary">Stock: {{ producto.stock }}</span>
             </p>
-            <button class="btn btn-primary btn-sm" :disabled="producto.stock === 0">Agregar</button>
+            <button :class="['btn btn-sm', producto.stock === 0 ? 'btn-secondary' : 'btn-primary']" :disabled="producto.stock === 0">Agregar</button>
         </div>
         <slot name="ribbon"></slot>
     </div>
