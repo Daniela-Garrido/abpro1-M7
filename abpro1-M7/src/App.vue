@@ -1,5 +1,6 @@
 <script setup>
 import { ref , onMounted } from 'vue';
+import Navbar from './components/Navbar.vue';
 import CatalogoProductos from './components/CatalogoProductos.vue';
 
 
@@ -53,9 +54,9 @@ onMounted(() => {
 </script>
 
 <template>
-
+  <Navbar />
   <main>
-    <h1 class="text-center">Productos</h1>
+    <h1 :style="{ color: '#0d6efd', textAlign: 'center', margin: '20px 0', fontSize: '40px', fontWeight: 'bold' }">Productos</h1>
     <CatalogoProductos :productos="productos"/>
   </main>
 
