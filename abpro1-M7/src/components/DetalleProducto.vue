@@ -22,7 +22,7 @@ onUnmounted(() => {
         <div class="card-header bg-dark text-white">
             <h5 class="mb-0">Detalle del producto</h5>
         </div>
-        <div class="card.body row align-items-center p-4">
+        <div class="card-body row align-items-center p-4">
             <div class="col-md-4 text-center">
                 <img :src="producto.imagen" class="img-fluid rounded" style="max-height: 200px;" alt="producto.name" />
             </div>
