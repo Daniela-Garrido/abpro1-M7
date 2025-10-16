@@ -1,5 +1,14 @@
 
+## Módulo 7 - Desarrollo de aplicaciones Front-End con Framework Vue
 
+### Actividad M7-ABPRO1 - Componentes y su ciclo de vida en Vue
+
+### Integrantes:
+María Teresa De La Fuente
+Daniela Garrido
+Gonzalo Román
+
+### Ruta: https://github.com/Daniela-Garrido/abpro1-M7
 
 # Descripción del Proyecto
 Este proyecto consiste en un catálogo interactivo de productos tecnológicos desarrollado con Vue.js 3. La aplicación permite visualizar productos, agregarlos al carrito de compras, gestionar cantidades y finalizar compras de manera intuitiva.
